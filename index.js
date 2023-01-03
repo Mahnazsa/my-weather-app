@@ -1,0 +1,95 @@
+let now = new Date ();
+let currentTime = document.querySelector("#time-date");
+
+function formatDate (date) {
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  let hour = date.getHours();
+  if (hour < 10) {
+    hour = `0${hour}`;
+  }
+ 
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`
+  }
+
+  let day = days[date.getDay()];
+  let month = months[date.getMonth()];
+  let dateNow = date.getDate ();
+
+  let formattedDate = `${hour}:${minutes}, ${day} ${month} ${dateNow}`
+  return formattedDate;
+} 
+
+currentTime.innerHTML =formatDate(now);
+
+function displayWeatherCondition (response) {
+  document.querySelector("#city").innerHTML = response.data.name;
+  document.querySelector("#temp").innerHTML = Math.round(response.data.main.temp);
+  document.querySelector("#wind-speed").innerHTML = Math.round(response.data.wind.speed);
+  document.querySelector("#humidity").innerHTML = response.data.main.humidity;
+  document.querySelector("#feels_like").innerHTML = Math.round(response.data.main.feels_like);
+  document.querySelector("#weather-description").innerHTML = response.data.weather[0].description;
+}
+
+function searchCity (city) {
+  let apiKey = "bb596261d5ff560ea3990f6df2eb28d9";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayWeatherCondition);
+}
+
+function handleSubmit (event) {
+  event.preventDefault();
+  let city = document.querySelector("#search-input").value;
+  searchCity(city);
+}
+
+
+let search = document.querySelector ("#search-result");
+search.addEventListener("submit", handleSubmit);
+
+
+function exchangTempFarenheit (event) {
+  event.preventDefault();
+  temperature.innerHTML= Math.round ((temperatureValueCelsius * 9) / 5 +32);
+}
+
+function exchangTempCelsius (event) {
+  event.preventDefault();
+  let temperature = document.querySelector("#temp");
+  temperature.innerHTML = temperatureValueCelsius;
+}
+
+let temperature = document.querySelector("#temp");
+let temperatureValueCelsius = temperature.innerHTML;
+
+
+let farenheit = document.querySelector("#farenheit");
+farenheit.addEventListener ("click", exchangTempFarenheit);
+
+let celsius = document.querySelector ("#celsius");
+celsius.addEventListener ("click", exchangTempCelsius);
+
+
+function searchLocation (position) {
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+  let apiKey = "bb596261d5ff560ea3990f6df2eb28d9";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayWeatherCondition);
+  }
+
+
+function getCurrentLocation (event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(searchLocation);
+}
+
+
+let currentLocation = document.querySelector("#current-location-button");
+currentLocation.addEventListener ("click", getCurrentLocation);
+
+
+
+searchCity("tehran");

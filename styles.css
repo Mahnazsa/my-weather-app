@@ -1,0 +1,125 @@
+body {
+  font-family: sans-serif;
+  color: #0B2339;
+
+}
+
+ul {
+  text-align: right;
+  padding-left: 0px;
+}
+
+
+#current-location-button {
+  float: right;
+  border-radius: 0.375rem;
+  padding: 6px 12px;
+}
+
+#search-result {
+  margin-bottom: 20px;
+}
+
+.cityinformation {
+  text-align: left;
+  padding-left: 50px;
+
+}
+
+li {
+  list-style: none;
+  color: #0B2339;
+  font-size: 15px;
+  font-weight: 100;
+}
+
+h1 {
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+hr {
+  position: relative;
+  top: -20px;
+}
+
+.temperaturedegree {
+  position: relative;
+  top: -30px;
+  text-align: center;
+  padding-left: 70px;
+}
+
+.temp {
+  font-size: 100px;
+  font-weight: 100;
+  padding: 0;
+  margin: 0;
+}
+
+.unit {
+  font-size: 15px;
+  font-weight: 100;
+  position: relative;
+  left: -5px;
+  top: -60px;
+}
+
+.weather-app {
+  border: 1px solid rgb(206, 212, 218);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 800px;
+  background: linear-gradient(108.1deg, rgb(167, 220, 225) 11.2%, rgb(217, 239, 242) 88.9%);
+  background: linear-gradient(109.6deg, rgb(204, 228, 247) 11.2%, rgb(237, 246, 250) 100.2%);
+}
+
+img {
+  width: 110px;
+  position: relative;
+  top: 10px;
+}
+
+.card-img-top {
+  width: 70px;
+  margin: auto;
+  padding-bottom: 20px;
+  display: block;
+  max-height: 70px;
+}
+
+
+.card-title {
+  text-align: center;
+  font-weight: 600;
+  font-size: 15px;
+  padding-top: 16px;
+}
+
+.card-body {
+  text-align: center;
+}
+
+.high-temp {
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 15px;
+}
+
+.low-temp {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 15px;
+}
+
+.last {
+  padding-bottom: 30px;
+}
+
+.coded-by {
+  font-size: 12px;
+  text-align: left;
+  margin: 20px auto;
+  max-width: 800px;
+}

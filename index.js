@@ -25,17 +25,18 @@ function formatDate (date) {
 currentTime.innerHTML =formatDate(now);
 
 function displayWeatherCondition (response) {
-  document.querySelector("#city").innerHTML = response.data.name;
-  document.querySelector("#temp").innerHTML = Math.round(response.data.main.temp);
+  console.log(response.data);
+  document.querySelector("#city").innerHTML = response.data.city;
+  document.querySelector("#temp").innerHTML = Math.round(response.data.temperature.current);
   document.querySelector("#wind-speed").innerHTML = Math.round(response.data.wind.speed);
-  document.querySelector("#humidity").innerHTML = response.data.main.humidity;
-  document.querySelector("#feels_like").innerHTML = Math.round(response.data.main.feels_like);
-  document.querySelector("#weather-description").innerHTML = response.data.weather[0].description;
+  document.querySelector("#humidity").innerHTML = response.data.temperature.humidity;
+  document.querySelector("#feels_like").innerHTML = Math.round(response.data.temperature.feels_like);
+  document.querySelector("#weather-description").innerHTML = response.data.condition.description;
 }
 
 function searchCity (city) {
-  let apiKey = "bb596261d5ff560ea3990f6df2eb28d9";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  let apiKey = "4c50413a6ac362tb2b6od01fb33f6e87";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayWeatherCondition);
 }
 
@@ -93,3 +94,5 @@ currentLocation.addEventListener ("click", getCurrentLocation);
 
 
 searchCity("tehran");
+
+

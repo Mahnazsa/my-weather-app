@@ -32,6 +32,9 @@ function displayWeatherCondition (response) {
   document.querySelector("#humidity").innerHTML = response.data.temperature.humidity;
   document.querySelector("#feels_like").innerHTML = Math.round(response.data.temperature.feels_like);
   document.querySelector("#weather-description").innerHTML = response.data.condition.description;
+  document.querySelector("#icon").setAttribute (
+    "src",
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`);
 }
 
 function searchCity (city) {

@@ -54,12 +54,12 @@ let search = document.querySelector ("#search-result");
 search.addEventListener("submit", handleSubmit);
 
 
-function exchangTempFarenheit (event) {
+function exchangeTempFarenheit (event) {
   event.preventDefault();
   temperature.innerHTML= Math.round ((temperatureValueCelsius * 9) / 5 +32);
 }
 
-function exchangTempCelsius (event) {
+function exchangeTempCelsius (event) {
   event.preventDefault();
   let temperature = document.querySelector("#temp");
   temperature.innerHTML = temperatureValueCelsius;
@@ -70,10 +70,10 @@ let temperatureValueCelsius = temperature.innerHTML;
 
 
 let farenheit = document.querySelector("#farenheit");
-farenheit.addEventListener ("click", exchangTempFarenheit);
+farenheit.addEventListener ("click", exchangeTempFarenheit);
 
 let celsius = document.querySelector ("#celsius");
-celsius.addEventListener ("click", exchangTempCelsius);
+celsius.addEventListener ("click", exchangeTempCelsius);
 
 
 function searchLocation (position) {

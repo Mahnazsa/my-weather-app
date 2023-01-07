@@ -33,6 +33,10 @@ li {
   font-weight: 100;
 }
 
+li:first-letter {
+  text-transform: uppercase;
+}
+
 h1 {
   font-weight: bold;
   margin-top: 5px;

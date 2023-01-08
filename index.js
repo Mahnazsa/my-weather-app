@@ -26,8 +26,10 @@ currentTime.innerHTML =formatDate(now);
 
 function displayWeatherCondition (response) {
   console.log(response.data);
+  temperatureValueCelsius = response.data.temperature.current;
+
   document.querySelector("#city").innerHTML = response.data.city;
-  document.querySelector("#temp").innerHTML = Math.round(response.data.temperature.current);
+  document.querySelector("#temp").innerHTML = Math.round(temperatureValueCelsius);
   document.querySelector("#wind-speed").innerHTML = Math.round(response.data.wind.speed);
   document.querySelector("#humidity").innerHTML = response.data.temperature.humidity;
   document.querySelector("#feels_like").innerHTML = Math.round(response.data.temperature.feels_like);
@@ -56,17 +58,19 @@ search.addEventListener("submit", handleSubmit);
 
 function exchangeTempFarenheit (event) {
   event.preventDefault();
+  let temperature = document.querySelector("#temp");
   temperature.innerHTML= Math.round ((temperatureValueCelsius * 9) / 5 +32);
 }
 
 function exchangeTempCelsius (event) {
   event.preventDefault();
   let temperature = document.querySelector("#temp");
-  temperature.innerHTML = temperatureValueCelsius;
+  temperature.innerHTML = Math.round (temperatureValueCelsius);
 }
 
-let temperature = document.querySelector("#temp");
-let temperatureValueCelsius = temperature.innerHTML;
+
+let temperatureValueCelsius = null;
+
 
 
 let farenheit = document.querySelector("#farenheit");

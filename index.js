@@ -24,6 +24,33 @@ function formatDate (date) {
 
 currentTime.innerHTML =formatDate(now);
 
+function displayForecast (){
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class ="row">`;
+  let days = ["Thu", "Fri", "Sat", "Sun", "Mon", "Tue"];
+  days.forEach (function (day) {
+  forecastHTML = forecastHTML +
+   `<div class="col-sm-2">
+      <div class="card bg-transparent h-100">
+        <h5 class="card-title">${day}</h5>
+        <img src="images/SVG/sunny.svg" class="card-img-top" />
+        <div class="card-body">
+          <span class="high-temp">12° </span>
+          <span class="low-temp">| 4°</span>
+        </div>
+      </div>
+    </div>
+   `;
+  });
+  
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
+
+
+
 function displayWeatherCondition (response) {
   console.log(response.data);
   temperatureValueCelsius = response.data.temperature.current;
@@ -101,5 +128,6 @@ currentLocation.addEventListener ("click", getCurrentLocation);
 
 
 searchCity("tehran");
+displayForecast();
 
 

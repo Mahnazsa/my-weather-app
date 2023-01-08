@@ -24,25 +24,40 @@ function formatDate (date) {
 
 currentTime.innerHTML =formatDate(now);
 
+
+function formatDay (timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+
+}
+
 function displayForecast (response){
-  console.log(response.data.daily);
+  let forecast = response.data.daily;
+
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class ="row">`;
-  let days = ["Thu", "Fri", "Sat", "Sun", "Mon", "Tue"];
-  days.forEach (function (day) {
+
+  forecast.forEach (function (forecastDay, index) {
+
+    if (index < 6) {
+
   forecastHTML = forecastHTML +
    `<div class="col-sm-2">
       <div class="card bg-transparent h-100">
-        <h5 class="card-title">${day}</h5>
-        <img src="images/SVG/sunny.svg" class="card-img-top" />
+        <h5 class="card-title">${formatDay(forecastDay.time)}</h5>
+        <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${forecastDay.condition.icon}.png" />
         <div class="card-body">
-          <span class="high-temp">12° </span>
-          <span class="low-temp">| 4°</span>
+          <span class="high-temp">${Math.round(forecastDay.temperature.maximum)}° </span>
+          <span class="low-temp">| ${Math.round(forecastDay.temperature.minimum)}°</span>
         </div>
       </div>
     </div>
    `;
+   }
   });
   
   forecastHTML = forecastHTML + `</div>`;
